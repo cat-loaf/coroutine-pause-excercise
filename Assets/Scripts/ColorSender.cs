@@ -26,7 +26,11 @@ public class ColorSender : MonoBehaviour
     IEnumerator SequenceColors() {
         while (true)
         {
-            
+            while (ActiveStatus == false) 
+            {
+                yield return null;
+            } 
+
             if (MaterialList.Length >= 0)
             {
                 foreach (Material mat in MaterialList)
@@ -35,7 +39,7 @@ public class ColorSender : MonoBehaviour
                     {
                         ResetColor?.Invoke();
                         PushMaterialList?.Invoke(MaterialList);
-                        yield return new WaitUntil(() => ActiveStatus == true);
+                        yield return null;
                     }
                     else 
                     {
